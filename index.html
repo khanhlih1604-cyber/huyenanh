@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Huyền Anh — Portfolio 🐬</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #F1FAFF;
+    --paper: #FFFFFF;
+    --sand: #DDF0FD;
+    --latte: #7EC8E3;
+    --mocha: #4A90C2;
+    --cocoa: #2F6E9E;
+    --ink: #223B4D;
+    --ink-soft: #5E7C8D;
+    --lavender: #D6ECFB;
+    --mint: #D2F5E3;
+    --butter: #FFF3C4;
+    --shadow: 0 20px 44px -20px rgba(47, 110, 158, 0.32);
+    --radius: 26px;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body{
+    margin: 0; font-family: 'Quicksand', sans-serif; color: var(--ink);
+    background: var(--cream);
+  }
+  h1,h2,h3,.display{ font-family: 'Fraunces', serif; font-weight: 600; }
+  .elegant-italic{ font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+  a{ color: inherit; text-decoration: none; }
+
+  .app{ display: flex; min-height: 100vh; }
+
+  .sidebar{
+    position: fixed; top: 0; left: 0; width: 300px; height: 100vh;
+    background: linear-gradient(165deg, var(--cocoa), var(--latte) 55%, var(--sand));
+    color: #fff; padding: 34px 26px; display: flex; flex-direction: column;
+    z-index: 20; overflow-y: auto;
+  }
+  .sidebar *{ text-shadow: 0 1px 3px rgba(34,59,77,0.3); }
+  .sidebar::-webkit-scrollbar{ width: 0; }
+  .passport-badge{
+    align-self: flex-start; font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px;
+    background: rgba(255,255,255,0.28); padding: 5px 12px; border-radius: 999px; margin-bottom: 22px;
+    text-transform: uppercase;
+  }
+  .avatar-wrap{ display: flex; justify-content: center; margin-bottom: 18px; }
+  .avatar{
+    width: 132px; height: 132px; border-radius: 50%;
+    background: linear-gradient(150deg, #fff, var(--sand));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 2.4rem; color: var(--cocoa);
+    border: 5px solid rgba(255,255,255,0.85); box-shadow: 0 14px 30px -10px rgba(34,59,77,0.35);
+    position: relative; animation: bobble 5s ease-in-out infinite; text-shadow: none;
+    overflow: hidden;
+  }
+  @keyframes bobble{ 0%,100%{ transform: translateY(0) rotate(-2deg);} 50%{ transform: translateY(-8px) rotate(2deg);} }
+  .avatar::after{ content:"🐬"; position:absolute; bottom:-4px; right:-6px; font-size:1.6rem; }
+
+  .side-name{ text-align: center; font-size: 1.5rem; line-height: 1.25; margin: 4px 0 6px; }
+  .side-sub{ text-align: center; font-size: 0.86rem; opacity: 0.95; margin: 0 0 18px; }
+  .side-chip{
+    display: block; text-align: center; font-size: 0.76rem; font-weight: 700;
+    background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.42);
+    padding: 7px 10px; border-radius: 12px; margin-bottom: 8px;
+  }
+
+  .side-nav{ list-style: none; margin: 26px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .side-nav a{
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px;
+    font-weight: 700; font-size: 0.92rem; transition: all 0.3s ease; opacity: 0.85;
+  }
+  .side-nav a .dot{ width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: 0.6; }
+  .side-nav a:hover, .side-nav a.active{ background: rgba(255,255,255,0.24); opacity: 1; transform: translateX(4px); }
+  .side-nav a.active .dot{ opacity: 1; box-shadow: 0 0 0 4px rgba(255,255,255,0.3); }
+
+  .side-footer{ margin-top: auto; }
+  .drive-btn{
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: #fff; color: var(--cocoa); font-weight: 800; font-size: 0.85rem;
+    padding: 12px 14px; border-radius: 999px; box-shadow: 0 10px 20px -8px rgba(34,59,77,0.3);
+    transition: transform 0.3s cubic-bezier(.3,1.4,.5,1); text-shadow: none;
+  }
+  .drive-btn:hover{ transform: translateY(-3px) rotate(-1deg); }
+  .side-stamp{
+    margin-top: 16px; text-align: center; font-size: 0.72rem; opacity: 0.92; line-height: 1.5;
+  }
+
+  main{ margin-left: 300px; flex: 1; padding: 48px 6vw 30px; max-width: 980px; }
+
+  .postcard{
+    position: relative; background: var(--paper); border-radius: var(--radius);
+    box-shadow: var(--shadow); border: 1px solid rgba(74,144,194,0.18);
+    padding: 44px; margin-bottom: 46px; overflow: hidden;
+  }
+  .tape{
+    position: absolute; width: 90px; height: 28px; opacity: 0.85;
+    background: repeating-linear-gradient(45deg, var(--lavender), var(--lavender) 6px, #bfe0f8 6px, #bfe0f8 12px);
+    box-shadow: 0 4px 10px -4px rgba(34,59,77,0.25);
+  }
+  .tape.tl{ top: -12px; left: 26px; transform: rotate(-8deg); }
+  .tape.tr{ top: -12px; right: 26px; transform: rotate(7deg); background: repeating-linear-gradient(45deg, var(--mint), var(--mint) 6px, #b9ecd0 6px, #b9ecd0 12px); }
+
+  .reveal{ opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.2,.8,.3,1.1); }
+  .reveal.in-view{ opacity: 1; transform: translateY(0); }
+
+  .hero-postcard .eyebrow{
+    display: inline-block; background: var(--sand); color: var(--cocoa); font-weight: 800;
+    font-size: 0.78rem; padding: 6px 14px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .hero-postcard h1{ font-size: clamp(2rem, 4vw, 2.9rem); margin: 0 0 6px; color: var(--ink); }
+  .hero-postcard h1 span{ color: var(--cocoa); }
+  .hero-postcard .greet-en{ font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.35rem; color: var(--cocoa); display:block; margin-bottom: 4px; }
+  .hero-postcard p{ max-width: 620px; line-height: 1.8; color: var(--ink-soft); font-size: 1.03rem; }
+  .stamp{
+    position: absolute; top: 40px; right: 44px; width: 92px; height: 108px;
+    background: var(--mint); border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; box-shadow: 0 10px 20px -8px rgba(34,59,77,0.25); transform: rotate(8deg);
+    border: 3px dashed #fff; color: #2c6e5b; font-weight: 800; text-align: center; font-size: 0.7rem; line-height: 1.4;
+    animation: wiggle 4s ease-in-out infinite;
+  }
+  @keyframes wiggle{ 0%,100%{ transform: rotate(8deg);} 50%{ transform: rotate(3deg);} }
+  .stamp .big{ font-size: 1.5rem; }
+  .quote-en{ font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.2rem; color: var(--ink-soft); margin-top: 18px; }
+
+  .intro-grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .intro-card{
+    background: rgba(74,144,194,0.08);
+    border: 1px dashed rgba(74,144,194,0.35);
+    border-radius: 18px;
+    padding: 18px 20px;
+  }
+  .intro-card h3{
+    margin: 0 0 10px;
+    font-size: 1rem;
+    color: var(--cocoa);
+  }
+  .intro-card p{
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  .section-title{ display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .section-title h2{ font-size: 1.5rem; margin: 0; color: var(--ink); }
+  .section-title .badge-num{
+    width: 40px; height: 40px; border-radius: 50%; background: var(--sand); color: var(--cocoa);
+    display: flex; align-items: center; justify-content: center; font-weight: 600; font-family:'Fraunces',serif;
+  }
+
+  /* ===== Bố cục bài tập: danh sách dọc kiểu vé/ticket thay vì lưới masonry ===== */
+  .work-ticket-list{ display: flex; flex-direction: column; gap: 18px; }
+  .work-ticket{
+    position: relative; display: grid; grid-template-columns: 64px 1fr; gap: 20px;
+    border-radius: 20px; padding: 22px 24px; background: var(--paper);
+    border: 1.5px solid rgba(74,144,194,0.2); box-shadow: var(--shadow);
+    transition: transform 0.35s cubic-bezier(.3,1.4,.5,1), border-color 0.3s ease;
+  }
+  .work-ticket::before{
+    content: ""; position: absolute; left: 78px; top: -9px; width: 18px; height: 18px;
+    border-radius: 50%; background: var(--cream); border: 1.5px solid rgba(74,144,194,0.2);
+  }
+  .work-ticket::after{
+    content: ""; position: absolute; left: 78px; bottom: -9px; width: 18px; height: 18px;
+    border-radius: 50%; background: var(--cream); border: 1.5px solid rgba(74,144,194,0.2);
+  }
+  .work-ticket:hover{ transform: translateX(8px); border-color: var(--mocha); }
+  .work-ticket .idx-circle{
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(140deg, var(--mocha), var(--latte));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.2rem; align-self: start;
+    box-shadow: 0 10px 18px -8px rgba(47,110,158,0.5);
+  }
+  .work-ticket h3{ margin: 2px 0 8px; font-size: 1.1rem; color: var(--ink); }
+
+  .goal-block{
+    background: rgba(74,144,194,0.1); border: 1px dashed rgba(74,144,194,0.4);
+    border-radius: 14px; padding: 12px 14px; margin: 0 0 14px;
+  }
+  .goal-line{ font-size: 0.88rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+  .goal-line + .goal-line{ margin-top: 8px; }
+  .goal-label{
+    display: inline-block; font-weight: 800; font-size: 0.78rem; color: var(--cocoa);
+    background: #fff; border-radius: 999px; padding: 3px 10px; margin-right: 8px;
+  }
+  .goal-label.result{ color: #2C8C6E; }
+
+  .work-link-btn{
+    display: inline-block; padding: 10px 20px; border-radius: 999px;
+    font-family: 'Quicksand', sans-serif; font-weight: 800; font-size: 0.82rem; color: #fff;
+    background: linear-gradient(135deg, var(--cocoa), var(--latte));
+    box-shadow: 0 10px 18px -10px rgba(34,59,77,0.5);
+    transition: transform 0.3s cubic-bezier(.3,1.4,.5,1), box-shadow 0.3s ease;
+  }
+  .work-link-btn:hover{ transform: translateY(-3px) scale(1.02); }
+
+  .summary-postcard{ text-align: center; }
+  .summary-postcard .quote-main{ font-family:'Fraunces', serif; font-style: italic; font-weight: 400; font-size: 1.45rem; color: var(--ink); max-width: 640px; margin: 6px auto 30px; line-height: 1.5; }
+
+  /* ===== Bố cục tổng kết: lưới cố định 2x2 kèm số thứ tự thay vì auto-fit ===== */
+  .reflect-square{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; margin-bottom: 30px; }
+  .reflect-box{
+    background: rgba(74,144,194,0.06); border: 1px solid rgba(74,144,194,0.18);
+    border-radius: 18px; padding: 22px 24px; position: relative;
+  }
+  .reflect-box .step-num{
+    position: absolute; top: -14px; left: 20px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--cocoa); color: #fff; display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 0.9rem; box-shadow: 0 6px 14px -6px rgba(34,59,77,0.5);
+  }
+  .reflect-box h3{ font-size: 1.05rem; margin: 6px 0 10px; display:flex; align-items:center; gap:8px; }
+  .reflect-box p{ font-size: 0.92rem; line-height: 1.75; color: var(--ink-soft); margin: 0; }
+
+  .stat-row{ display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; border-top: 2px dashed rgba(74,144,194,0.35); padding-top: 26px; }
+  .stat-row .num{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.9rem; color: var(--cocoa); }
+  .stat-row .label{ font-size: 0.82rem; color: var(--ink-soft); }
+
+  footer{ text-align: center; padding: 20px 6vw 50px; color: var(--ink-soft); font-size: 0.86rem; }
+  footer .bear{ display: inline-block; }
+
+  @media (max-width: 860px){
+    .app{ flex-direction: column; }
+    .sidebar{ position: relative; width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px; padding: 20px 5vw; }
+    .avatar-wrap{ margin: 0; }
+    .avatar{ width: 78px; height: 78px; font-size: 1.5rem; }
+    .side-name{ font-size: 1.15rem; text-align: left; }
+    .side-sub{ text-align: left; margin-bottom: 6px; }
+    .side-nav{ flex-direction: row; flex-wrap: wrap; margin: 10px 0; width: 100%; }
+    .side-footer{ margin-top: 0; width: 100%; }
+    main{ margin-left: 0; padding: 30px 5vw; }
+    .work-ticket{ grid-template-columns: 1fr; }
+    .work-ticket::before, .work-ticket::after{ display: none; }
+    .reflect-square{ grid-template-columns: 1fr; }
+    .stamp{ position: static; margin: 0 auto 20px; }
+    .intro-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <span class="passport-badge">🐬 Portfolio</span>
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <img src="huyenanh.jpg" alt="Avatar" style="width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50%;"
+             onerror="this.style.display='none';">
+      </div>
+    </div>
+    <h1 class="side-name">Nguyễn Huyền<br>Anh</h1>
+    <p class="side-sub">Ngôn ngữ Nhật 🎓</p>
+    <span class="side-chip">MSV: 25042017</span>
+    <span class="side-chip">ĐH Ngoại ngữ - ĐHQGHN</span>
+
+    <ul class="side-nav">
+      <li><a href="#trang-bia" class="nav-link active"><span class="dot"></span>Trang bìa</a></li>
+      <li><a href="#bai-tap" class="nav-link"><span class="dot"></span>Bài tập</a></li>
+      <li><a href="#tong-ket" class="nav-link"><span class="dot"></span>Tổng kết</a></li>
+    </ul>
+
+    <div class="side-footer">
+      <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID?usp=drive_link" class="drive-btn" target="_blank" rel="noopener"> Google Drive</a>
+      <p class="side-stamp">🌊 made with 🐬<br>at Đại học Ngoại ngữ - ĐHQGHN</p>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="trang-bia" class="postcard hero-postcard reveal">
+      <div class="tape tl"></div><div class="tape tr"></div>
+      <span class="eyebrow">🐬 Portfolio cá nhân</span>
+      <span class="greet-en">Hajimemashite — rất vui được gặp bạn!</span>
+      <h1>Xin chào, mình là <span>Nguyễn Huyền Anh</span> 🐬</h1>
+      <p>Sinh viên ngành <b>Ngôn ngữ Nhật</b> tại <b>Trường Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội</b>. Portfolio này giống như một cuốn sổ tay nhỏ, nơi mình ghi lại hành trình làm quen với công nghệ số song song với tình yêu dành cho tiếng Nhật và văn hoá xứ sở hoa anh đào. Ở đây, mỗi bài tập không chỉ là một nhiệm vụ cần hoàn thành, mà còn là một mảnh ghép giúp mình hiểu rõ hơn cách công nghệ có thể đồng hành cùng việc học ngôn ngữ — biến những giờ tự học đôi khi đơn độc trở nên nhẹ nhàng và thú vị hơn rất nhiều.</p>
+      <div class="intro-grid">
+        <div class="intro-card">
+          <h3>💙 Sở thích</h3>
+          <p>Mình thích xem anime, đọc manga và nghe nhạc Nhật vào những lúc rảnh rỗi. Mình cũng có thói quen viết nhật ký nho nhỏ mỗi tối, ghi lại một vài từ vựng mới học được trong ngày. Thỉnh thoảng mình sẽ pha một tách trà, mở playlist lofi và ngồi luyện viết Kanji cho đến khi thấy vừa đủ để nghỉ ngơi.</p>
+        </div>
+        <div class="intro-card">
+          <h3>🎯 Mục tiêu môn học</h3>
+          <p>Mình mong muốn có thể tận dụng công nghệ số và AI như một người bạn đồng hành trong việc học tiếng Nhật — từ tra cứu ngữ pháp, luyện phát âm cho đến việc tạo ra các tài liệu ôn tập được cá nhân hoá. Đồng thời, mình cũng muốn rèn cho bản thân thói quen sử dụng công nghệ một cách có chọn lọc, minh bạch và luôn giữ vững sự trung thực trong học tập.</p>
+        </div>
+      </div>
+      <p class="quote-en">"Little by little, one travels far."</p>
+    </section>
+
+    <section id="bai-tap" class="postcard reveal">
+      <div class="tape tr"></div>
+      <div class="section-title"><span class="badge-num">01</span><h2>Hệ thống bài tập cá nhân</h2></div>
+      <div class="work-ticket-list">
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">01</div>
+          <div>
+            <h3>🐬 Thao tác cơ bản với máy tính và quản lý tệp tin</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Làm quen với cách vận hành hệ điều hành, xây dựng thói quen sắp xếp tài liệu học tiếng Nhật (từ vựng, ngữ pháp, bài nghe) một cách khoa học.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Thiết lập hệ thống thư mục theo từng kỹ năng Nghe - Nói - Đọc - Viết, luyện thao tác di chuyển, sao lưu tệp tin và khôi phục dữ liệu khi cần.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_1/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">02</div>
+          <div>
+            <h3>🐬 Tìm kiếm và thẩm định thông tin học thuật</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Rèn khả năng tìm kiếm có chọn lọc, nhận diện các nguồn tài liệu tiếng Nhật đáng tin cậy phục vụ việc học và nghiên cứu.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Xây dựng danh mục nguồn tham khảo uy tín, luyện kỹ năng đối chiếu thông tin trước khi đưa vào các bài luận, bài thuyết trình.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_2/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">03</div>
+          <div>
+            <h3>🐬 Xây dựng câu lệnh (Prompt) hiệu quả cho việc học ngôn ngữ</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Làm chủ kỹ thuật đặt câu lệnh để khai thác đúng và đủ khả năng hỗ trợ của AI trong việc luyện Kanji, ngữ pháp và hội thoại.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Thử nghiệm nhiều dạng prompt khác nhau, dần xây dựng được bộ câu hỏi ôn tập sát với trình độ và mục tiêu học tập của bản thân.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_3/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">04</div>
+          <div>
+            <h3>🐬 Hợp tác và làm việc nhóm trên nền tảng số</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Ứng dụng các công cụ đám mây để việc trao đổi, chia sẻ tài liệu trong nhóm học tập diễn ra suôn sẻ hơn.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Cùng nhóm thiết lập không gian làm việc chung, phân chia nhiệm vụ rõ ràng và chỉnh sửa tài liệu theo thời gian thực.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_4/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">05</div>
+          <div>
+            <h3>🐬 Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Khai thác các công cụ AI tạo sinh để nâng cao chất lượng hình ảnh, tài liệu minh hoạ phục vụ bài thuyết trình.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Kết hợp AI lên ý tưởng, tạo hình minh hoạ và hoàn thiện sản phẩm bằng các công cụ thiết kế trực quan.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_5/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+        <div class="work-ticket reveal">
+          <div class="idx-circle">06</div>
+          <div>
+            <h3>🐬 Sử dụng AI có trách nhiệm trong học tập</h3>
+            <div class="goal-block">
+              <p class="goal-line"><span class="goal-label">🎯 Mục tiêu</span>Hiểu rõ giới hạn của AI và các nguyên tắc liêm chính học thuật khi ứng dụng công nghệ vào việc học.</p>
+              <p class="goal-line"><span class="goal-label result">🌊 Quá trình thực hiện</span>Đối chiếu sản phẩm với quy định của nhà trường, luyện cách trích dẫn rõ ràng và xây dựng nguyên tắc sử dụng AI có trách nhiệm cho bản thân.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/YOUR_FILE_ID_6/view?usp=drive_link" target="_blank" rel="noopener" class="work-link-btn">📁 Xem chi tiết quá trình</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="tong-ket" class="postcard summary-postcard reveal">
+      <div class="tape tl"></div><div class="tape tr"></div>
+      <div class="section-title" style="justify-content:center;"><span class="badge-num">02</span><h2>Nhìn nhận &amp; Trải nghiệm học tập</h2></div>
+      <p class="quote-main">"Ngôn ngữ mở ra một cánh cửa, còn công nghệ giúp mình bước qua cánh cửa đó nhẹ nhàng hơn."</p>
+      <div class="reflect-square">
+        <div class="reflect-box reveal">
+          <span class="step-num">1</span>
+          <h3>🔑 Bài học cốt lõi</h3>
+          <p>Qua học phần này, mình nhận ra công nghệ và AI dù thông minh đến đâu cũng chỉ đóng vai trò hỗ trợ; khả năng tự đặt câu hỏi, chọn lọc thông tin và tư duy phản biện của bản thân mới là điều quyết định giá trị thực sự của những gì mình tạo ra.</p>
+        </div>
+        <div class="reflect-box reveal">
+          <span class="step-num">2</span>
+          <h3>🌱 Sự thay đổi của bản thân</h3>
+          <p>Nhìn lại cả học kỳ, mình thấy bản thân đã tự tin hơn rất nhiều khi làm việc với công nghệ. Từ một người từng khá dè dặt trước các thuật ngữ kỹ thuật, giờ đây mình đã có thể chủ động sử dụng AI và các công cụ số để hỗ trợ việc học tiếng Nhật hiệu quả hơn.</p>
+        </div>
+        <div class="reflect-box reveal">
+          <span class="step-num">3</span>
+          <h3>💭 Cảm nghĩ sau khi hoàn thiện Portfolio</h3>
+          <p>Nhìn lại trang portfolio hoàn chỉnh, mình cảm thấy khá bất ngờ và tự hào vì những gì bản thân đã làm được. Quá trình tự tay chăm chút từng phần nội dung giúp mình hiểu rằng công nghệ không hề khô khan, mà có thể trở thành một không gian để thể hiện cá tính riêng.</p>
+        </div>
+        <div class="reflect-box reveal">
+          <span class="step-num">4</span>
+          <h3>🌟 Định hướng tương lai</h3>
+          <p>Mình mong muốn tiếp tục ứng dụng những kỹ năng số đã học được vào việc học tiếng Nhật hằng ngày, đặc biệt là trong việc tra cứu tài liệu, luyện tập ngôn ngữ và tạo ra các sản phẩm học tập trực quan, sinh động hơn.</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat reveal"><div class="num">06/06</div><div class="label">Bài tập hoàn thành</div></div>
+        <div class="stat reveal"><div class="num">100%</div><div class="label">Nỗ lực &amp; cố gắng</div></div>
+        <div class="stat reveal"><div class="num">A+</div><div class="label">Mục tiêu học phần</div></div>
+      </div>
+    </section>
+
+    <footer><span class="bear">🐬</span> made by Nguyễn Huyền Anh <span class="bear">🌊</span></footer>
+
+  </main>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach((el,i)=>{ el.style.transitionDelay = (i % 6) * 0.07 + 's'; });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el=>io.observe(el));
+
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      const target = document.querySelector(link.getAttribute('href'));
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  const sections = document.querySelectorAll('main section[id]');
+  const navIo = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href') === '#'+id));
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s=>navIo.observe(s));
+</script>
+</body>
+</html>
